@@ -3,6 +3,9 @@ package com.binary_tree.binary_tree.model;
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Getter
 @Setter
@@ -11,6 +14,7 @@ public class Node {
     private Boy data;
     private Node left;
     private Node right;
+
 
     public Node(Boy data) {
         this.data = data;
@@ -53,4 +57,95 @@ public class Node {
         }
 
     }
+    public List<Boy> listBoysPreOrden() {
+        List<Boy> listBoysPreOrden = new ArrayList<>();
+        listBoysPreOrden.add(this.getData());
+        if(this.getLeft() != null){
+            listBoysPreOrden.addAll(this.getLeft().listBoysPreOrden());
+
+        }
+        if(this.getRight() != null){
+            listBoysPreOrden.addAll(this.getRight().listBoysPreOrden());
+
+        }
+        return  listBoysPreOrden;
+    }
+
+    public List<Boy> listBoysInOrden(){
+
+        List<Boy> listBoysInOrden = new ArrayList<>();
+        if(this.getLeft() != null){
+            listBoysInOrden.addAll(this.getLeft().listBoysInOrden());
+
+        }
+
+        listBoysInOrden.add(this.getData());
+
+        if(this.getRight() != null){
+            listBoysInOrden.addAll(this.getRight().listBoysInOrden());
+
+        }
+
+        return listBoysInOrden;
+    }
+
+    public List<Boy> listBoysPostOrden(){
+        List<Boy> listBoysPostOrden = new ArrayList<>();
+        if(this.getLeft() != null){
+            listBoysPostOrden.addAll(this.getLeft().listBoysPostOrden());
+
+        }
+
+        if(this.getRight() != null){
+            listBoysPostOrden.addAll(this.getRight().listBoysPostOrden());
+
+        }
+
+        listBoysPostOrden.add(this.getData());
+
+
+        return listBoysPostOrden;
+    }
+
+    public List<Boy> listEqualNum(int number) {
+        List<Boy> listEqualNum = new ArrayList<>();
+
+        listEqualNum.add(this.getData());
+
+        if (this.getLeft() != null) {
+            if (this.getData().getIdentification() % 10 == number) {
+
+                listEqualNum.addAll(this.getLeft().listEqualNum(number));
+            }
+        }
+
+        if (this.getRight() != null) {
+            if (this.getData().getIdentification() % 10 == number) {
+                listEqualNum.addAll(this.getRight().listEqualNum(number));
+
+            }
+        }
+        return listEqualNum;
+
+    }
+
+
+    public List<Boy> getLeafs() {
+        List<Boy> getLeafs = new ArrayList<>();
+        if (this.isLeaf()) {
+            getLeafs.add(this.getData());
+        } else {
+            if (this.getLeft() != null) {
+                getLeafs.addAll(this.getLeft().getLeafs());
+
+
+            }
+            if (this.getRight() != null) {
+                getLeafs.addAll(this.getRight().getLeafs());
+            }
+
+        }
+        return getLeafs;
+    }
+
 }

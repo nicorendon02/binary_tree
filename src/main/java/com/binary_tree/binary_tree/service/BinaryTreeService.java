@@ -5,6 +5,7 @@ import com.binary_tree.binary_tree.controller.dto.ErrorDTO;
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
 import com.binary_tree.binary_tree.model.BinaryTree;
 import com.binary_tree.binary_tree.model.Boy;
+import com.binary_tree.binary_tree.model.Node;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,19 +20,51 @@ public class BinaryTreeService {
 
     public ResponseEntity<ResponseBinaryTreeDto> addBoy(Boy boy) throws BinaryTreeException
     {
-        //try {
-            binaryTree.addNode(boy);
-            return new ResponseEntity<>(
-                    new ResponseBinaryTreeDto(boy,"Se ha guardado exitosamente",
-                            null),HttpStatus.OK);
-        /*} catch (BinaryTreeException e) {
-            List<ErrorDTO> errors = new ArrayList<>();
-            errors.add(new ErrorDTO(HttpStatus.CONFLICT.value(), e.getMessage()));
-            return new ResponseEntity<ResponseBinaryTreeDto>(
-                    new ResponseBinaryTreeDto(boy,null,errors
-                            ),HttpStatus.CONFLICT);
-        }
+        binaryTree.addNode(boy);
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(boy,"Se ha guardado exitosamente",
+                        null),HttpStatus.OK);
 
-         */
+    }
+
+    public ResponseEntity<ResponseBinaryTreeDto> listBoys(int which) throws BinaryTreeException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.listBoys(which),"Success",
+                        null),HttpStatus.OK);
+
+    }
+
+
+    public ResponseEntity<ResponseBinaryTreeDto> count()
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.getCount(),"Contador vacio",
+                        null),HttpStatus.OK);
+
+    }
+
+    public ResponseEntity<ResponseBinaryTreeDto> counterEqualNum(Node node, int number) throws BinaryTreeException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.counterEqualNum(node,number),"Counter Success",
+                        null),HttpStatus.OK);
+
+    }
+
+    public ResponseEntity<ResponseBinaryTreeDto> listEqualNum(int number) throws BinaryTreeException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.listEqualNum(number),"List Success",
+                        null),HttpStatus.OK);
+
+    }
+
+    public ResponseEntity<ResponseBinaryTreeDto> listGetLeafs() throws BinaryTreeException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.getLeafs(),"List Success",
+                        null),HttpStatus.OK);
+
     }
 }

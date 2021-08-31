@@ -25,4 +25,5 @@ public class Boy {
     @Size(max=20)
     private String city;
 
+
 }
