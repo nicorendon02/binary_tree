@@ -1,6 +1,7 @@
 package com.binary_tree.binary_tree.model;
 
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
+import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -73,5 +74,22 @@ public class BinaryTree {
             return root.listEqualNum(number);
         }
         throw new BinaryTreeException("No hay datos en la lista");
+    }
+
+    //REVIEW THIS ONE / What does it return?
+    public void prune() throws DataNotFoundException
+    {
+        if(root!=null)
+        {
+            if(root.isLeaf())
+            {
+                root=null;
+            }
+            else
+            {
+                root.prune();
+            }
+        }
+        throw new DataNotFoundException("No hay datos que mostrar");
     }
 }

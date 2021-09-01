@@ -14,10 +14,12 @@ public class Node {
     private Boy data;
     private Node left;
     private Node right;
+    private int grade;
 
 
     public Node(Boy data) {
         this.data = data;
+        this.grade = 1;
     }
 
     public boolean isLeaf()
@@ -148,4 +150,40 @@ public class Node {
         return getLeafs;
     }
 
+    //REVIEW THIS ONE
+    public List<Boy> isEqualAndLeaf(int number)
+    {
+        List<Boy> listEqualAndLeaf = new ArrayList<>();
+        List<Boy> listEqual = new ArrayList<>();
+
+        return listEqualAndLeaf;
+    }
+
+    public void prune() {
+        if (this.getRight() != null) {
+            if (this.getRight().isLeaf()) {
+                this.setRight(null);
+            } else {
+                this.getRight().prune();
+            }
+        }
+        if (this.getLeft() != null) {
+            if (this.getLeft().isLeaf()) {
+                this.setLeft(null);
+            } else {
+                this.getLeft().prune();
+            }
+        }
+    }
+
+    public int calculateGrade()
+    {
+        this.grade = 1;
+        int gradeLeft = 0;
+        int gradeRight = 0;
+        if(this.getLeft() != null)
+        {
+
+        }
+    }
 }

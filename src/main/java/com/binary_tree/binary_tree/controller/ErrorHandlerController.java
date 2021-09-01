@@ -3,6 +3,7 @@ package com.binary_tree.binary_tree.controller;
 import com.binary_tree.binary_tree.application.dto.ResponseBinaryTreeDto;
 import com.binary_tree.binary_tree.controller.dto.ErrorDTO;
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
+import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import org.springframework.boot.context.config.ConfigDataNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +49,16 @@ public class ErrorHandlerController {
         List<ErrorDTO> errorsNotFound = new ArrayList<>();
         errorsNotFound.add(new ErrorDTO(HttpStatus.CONFLICT.value(), ex.getMessage()));
         String message = "No se ha encontrado el dato";
+        ResponseBinaryTreeDto response = new ResponseBinaryTreeDto(null, message, errorsNotFound);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DataNotFoundException.class)
+    protected ResponseEntity<?> handle(DataNotFoundException ex) {
+
+        List<ErrorDTO> errorsNotFound = new ArrayList<>();
+        errorsNotFound.add(new ErrorDTO(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
+        String message = "No hay datos";
         ResponseBinaryTreeDto response = new ResponseBinaryTreeDto(null, message, errorsNotFound);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
