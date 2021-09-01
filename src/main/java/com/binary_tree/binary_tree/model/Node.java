@@ -10,55 +10,69 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+// Generating the class with Attributes
 public class Node {
     private Boy data;
     private Node left;
     private Node right;
     private int grade;
 
-
+// generating constructor method
     public Node(Boy data) {
         this.data = data;
         this.grade = 1;
     }
 
+    // validate if the Node is a Leaf
     public boolean isLeaf()
     {
+        // return TRUE if the Node has Left & Right == null
         return left ==null && right==null;
     }
 
+    // addBoy method signature (throws Exception in case of a mistake)
     public void addBoy(Boy data) throws BinaryTreeException
     {
+        // if the Node ID is < root ID
         if(data.getIdentification() < this.getData().getIdentification())
         {
+            // if root Left == null
             if(this.getLeft()==null)
             {
+                // root Left receives the Node
                 this.setLeft(new Node(data));
             }
+            // if root Left has something...
             else
             {
+                // move to the Left and call the method AGAIN!
                 this.left.addBoy(data);
             }
         }
+        // if the Node is > root ID
         else if (data.getIdentification() > this.getData().getIdentification())
         {
-
+            // if root Right == null
             if(this.getRight()==null)
             {
+                // the Node goes to the Right side
                 this.setRight(new Node(data));
             }
+            // if the root Right has something...
             else
             {
-
+                // move to the Right and call the method AGAIN!
                 this.right.addBoy(data);
             }
         }
+        // if the Node ID is EQUAL TO root ID
         else
         {
-            throw new BinaryTreeException("Ya existe un niño con esa identificación");
+            // A node with that ID already exists. (Exception)
+            throw new BinaryTreeException("A Node with that ID already exists!");
         }
-
     }
+
     public List<Boy> listBoysPreOrden() {
         List<Boy> listBoysPreOrden = new ArrayList<>();
         listBoysPreOrden.add(this.getData());

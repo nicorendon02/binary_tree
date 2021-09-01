@@ -13,13 +13,17 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+// Using Lombok Annotations
 @Service
+
+// Generating the class with Attributes
 public class BinaryTreeService {
-    private BinaryTree binaryTree= new BinaryTree();
+    private BinaryTree binaryTree = new BinaryTree();
 
-
+    // ResponseEntity for addBoy methods
     public ResponseEntity<ResponseBinaryTreeDto> addBoy(Boy boy) throws BinaryTreeException
     {
+        // call the first method located in BinaryTree
         binaryTree.addBoy(boy);
         return new ResponseEntity<>(
                 new ResponseBinaryTreeDto(boy,"Se ha guardado exitosamente",

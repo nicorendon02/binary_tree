@@ -8,22 +8,31 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+// using the Lombok Annotations
 @Data
 @NoArgsConstructor
+
+// Generating the class with Attributes
 public class BinaryTree {
     private Node root;
     private int count;
 
+    // method that calls the one in the Node Model later on...
     public void addBoy(Boy data) throws BinaryTreeException
     {
+        // validate whether the root is empty
         if(root==null)
         {
+            // set a new root
             root = new Node(data);
         }
+        // if the root already exists...
         else
         {
+            // Call the method in the Node class to locate the Boy in the correct position!
             root.addBoy(data);
         }
+        // the BoysCount increases when finished.
         count ++;
     }
 
