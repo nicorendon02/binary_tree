@@ -18,6 +18,7 @@ import java.util.List;
 
 // Generating the class with Attributes
 public class BinaryTreeService {
+    // Activate the process by creating the Tree!!
     private BinaryTree binaryTree = new BinaryTree();
 
     // ResponseEntity for addBoy methods
@@ -25,8 +26,8 @@ public class BinaryTreeService {
     {
         // call the first method located in BinaryTree
         binaryTree.addBoy(boy);
-        return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(boy,"Se ha guardado exitosamente",
+        // Once the Boy is added correctly...
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(boy,"Boy saved correctly!",
                         null),HttpStatus.OK);
 
     }
@@ -34,7 +35,7 @@ public class BinaryTreeService {
     public ResponseEntity<ResponseBinaryTreeDto> listBoys(int which) throws BinaryTreeException
     {
         return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.listBoys(which),"Success",
+                new ResponseBinaryTreeDto(binaryTree.listBoys(which),"Successful!",
                         null),HttpStatus.OK);
 
     }
@@ -43,7 +44,7 @@ public class BinaryTreeService {
     public ResponseEntity<ResponseBinaryTreeDto> count()
     {
         return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.getCount(),"Contador vacio",
+                new ResponseBinaryTreeDto(binaryTree.getCount(),"The counter is empty",
                         null),HttpStatus.OK);
 
     }
