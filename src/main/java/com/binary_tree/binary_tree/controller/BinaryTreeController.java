@@ -20,7 +20,7 @@ public class BinaryTreeController {
     @Autowired
     private BinaryTreeService binaryTreeService;
 
-    @PostMapping
+    @PostMapping("/add")
     public @ResponseBody
     ResponseEntity<?> addBoy(@Valid @RequestBody Boy boy) throws BinaryTreeException {
         return binaryTreeService.addBoy(boy);

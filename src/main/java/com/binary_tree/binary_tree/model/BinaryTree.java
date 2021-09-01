@@ -14,7 +14,7 @@ public class BinaryTree {
     private Node root;
     private int count;
 
-    public void addNode(Boy data) throws BinaryTreeException
+    public void addBoy(Boy data) throws BinaryTreeException
     {
         if(root==null)
         {
@@ -22,7 +22,7 @@ public class BinaryTree {
         }
         else
         {
-            root.addNode(data);
+            root.addBoy(data);
         }
         count ++;
     }

@@ -20,7 +20,7 @@ public class BinaryTreeService {
 
     public ResponseEntity<ResponseBinaryTreeDto> addBoy(Boy boy) throws BinaryTreeException
     {
-        binaryTree.addNode(boy);
+        binaryTree.addBoy(boy);
         return new ResponseEntity<>(
                 new ResponseBinaryTreeDto(boy,"Se ha guardado exitosamente",
                         null),HttpStatus.OK);

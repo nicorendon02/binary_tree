@@ -27,7 +27,7 @@ public class Node {
         return left ==null && right==null;
     }
 
-    public void addNode(Boy data) throws BinaryTreeException
+    public void addBoy(Boy data) throws BinaryTreeException
     {
         if(data.getIdentification() < this.getData().getIdentification())
         {
@@ -37,7 +37,7 @@ public class Node {
             }
             else
             {
-                this.left.addNode(data);
+                this.left.addBoy(data);
             }
         }
         else if (data.getIdentification() > this.getData().getIdentification())
@@ -50,7 +50,7 @@ public class Node {
             else
             {
 
-                this.right.addNode(data);
+                this.right.addBoy(data);
             }
         }
         else
@@ -183,7 +183,9 @@ public class Node {
         int gradeRight = 0;
         if(this.getLeft() != null)
         {
-
+            // finish this one!!!
+            return 0;
         }
+        return 0;
     }
 }
