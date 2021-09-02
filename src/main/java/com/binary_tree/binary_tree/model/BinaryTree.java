@@ -36,30 +36,37 @@ public class BinaryTree {
         count ++;
     }
 
-    public List<Boy> getLeafs() throws BinaryTreeException
+    public List<Boy> listBoys(int which) throws DataNotFoundException
+    {
+        if (root == null)
+        {
+            throw new DataNotFoundException("There are no boys to show");
+        }
+        else {
+            // Call to a certain method according to an Option...
+            switch (which) {
+                case 1:
+                    return root.listBoysPreOrder();
+                case 2:
+                    return root.listBoysInOrder();
+                case 3:
+                    return root.listBoysPostOrder();
+            }
+            // if the List is empty
+            throw new DataNotFoundException("No data to show");
+        }
+    }
+
+    public List<Boy> getLeaves() throws BinaryTreeException
     {
         if(root!=null)
         {
-            return root.getLeafs();
+            return root.getLeaves();
         }
         else
         {
             throw new BinaryTreeException("El arbol esta vacio");
         }
-    }
-
-    public List<Boy> listBoys(int which) throws BinaryTreeException{
-        List<Boy> listBoys = new ArrayList<>();
-        switch (which){
-            case 1:
-                return root.listBoysPreOrden();
-            case 2:
-                return root.listBoysInOrden();
-            case 3:
-                return root.listBoysPostOrden();
-        }
-
-        throw new BinaryTreeException("No hay datos que mostrar");
     }
 
     public int counterEqualNum(Node node, int number)throws BinaryTreeException{

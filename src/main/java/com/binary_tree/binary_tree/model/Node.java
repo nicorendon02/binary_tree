@@ -69,58 +69,69 @@ public class Node {
         else
         {
             // A node with that ID already exists. (Exception)
-            throw new BinaryTreeException("A Node with that ID already exists!");
+            throw new BinaryTreeException("A Boy with that ID already exists!");
         }
     }
 
-    public List<Boy> listBoysPreOrden() {
-        List<Boy> listBoysPreOrden = new ArrayList<>();
-        listBoysPreOrden.add(this.getData());
+    // ----- Sort Methods -----
+
+    // Method preOrder
+    public List<Boy> listBoysPreOrder() {
+        // Generate a new List to append Boys
+        List<Boy> listBoysPreOrder = new ArrayList<>();
+        // List appends the root
+        listBoysPreOrder.add(this.getData());
+        // if root Left has something...
         if(this.getLeft() != null){
-            listBoysPreOrden.addAll(this.getLeft().listBoysPreOrden());
-
+            // move to the Left and call the method AGAIN! and add ALL
+            listBoysPreOrder.addAll(this.getLeft().listBoysPreOrder());
         }
+        // if root Right has something...
         if(this.getRight() != null){
-            listBoysPreOrden.addAll(this.getRight().listBoysPreOrden());
-
+            // move to the Right and call the method AGAIN! and add ALL
+            listBoysPreOrder.addAll(this.getRight().listBoysPreOrder());
         }
-        return  listBoysPreOrden;
+        // Once finished return the List
+        return  listBoysPreOrder;
     }
 
-    public List<Boy> listBoysInOrden(){
-
-        List<Boy> listBoysInOrden = new ArrayList<>();
+    public List<Boy> listBoysInOrder(){
+        // Generate a new List
+        List<Boy> listBoysInOrder = new ArrayList<>();
+        // if root Left has something...
         if(this.getLeft() != null){
-            listBoysInOrden.addAll(this.getLeft().listBoysInOrden());
-
+            // move to the Left and call the method AGAIN! and add ALL
+            listBoysInOrder.addAll(this.getLeft().listBoysInOrder());
         }
+        // add root to the List
+        listBoysInOrder.add(this.getData());
 
-        listBoysInOrden.add(this.getData());
-
+        // if the root Right has something...
         if(this.getRight() != null){
-            listBoysInOrden.addAll(this.getRight().listBoysInOrden());
-
+            // move to the Right and call the method AGAIN! and add ALL
+            listBoysInOrder.addAll(this.getRight().listBoysInOrder());
         }
-
-        return listBoysInOrden;
+        // Once finished return the List
+        return listBoysInOrder;
     }
 
-    public List<Boy> listBoysPostOrden(){
-        List<Boy> listBoysPostOrden = new ArrayList<>();
+    public List<Boy> listBoysPostOrder(){
+        // Generate a new List
+        List<Boy> listBoysPostOrder = new ArrayList<>();
+        // if root Left has something...
         if(this.getLeft() != null){
-            listBoysPostOrden.addAll(this.getLeft().listBoysPostOrden());
-
+            // move to the Left and call the method AGAIN! and add ALL
+            listBoysPostOrder.addAll(this.getLeft().listBoysPostOrder());
         }
-
+        // if the root Right has something...
         if(this.getRight() != null){
-            listBoysPostOrden.addAll(this.getRight().listBoysPostOrden());
-
+            // move to the Right and call the method AGAIN! and add ALL
+            listBoysPostOrder.addAll(this.getRight().listBoysPostOrder());
         }
-
-        listBoysPostOrden.add(this.getData());
-
-
-        return listBoysPostOrden;
+        // add the root to the List
+        listBoysPostOrder.add(this.getData());
+        // Once finished return the List
+        return listBoysPostOrder;
     }
 
     public List<Boy> listEqualNum(int number) {
@@ -146,22 +157,22 @@ public class Node {
     }
 
 
-    public List<Boy> getLeafs() {
-        List<Boy> getLeafs = new ArrayList<>();
+    public List<Boy> getLeaves() {
+        List<Boy> getLeaves = new ArrayList<>();
         if (this.isLeaf()) {
-            getLeafs.add(this.getData());
+            getLeaves.add(this.getData());
         } else {
             if (this.getLeft() != null) {
-                getLeafs.addAll(this.getLeft().getLeafs());
+                getLeaves.addAll(this.getLeft().getLeaves());
 
 
             }
             if (this.getRight() != null) {
-                getLeafs.addAll(this.getRight().getLeafs());
+                getLeaves.addAll(this.getRight().getLeaves());
             }
 
         }
-        return getLeafs;
+        return getLeaves;
     }
 
     //REVIEW THIS ONE

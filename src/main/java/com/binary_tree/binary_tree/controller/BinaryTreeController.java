@@ -1,6 +1,7 @@
 package com.binary_tree.binary_tree.controller;
 
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
+import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import com.binary_tree.binary_tree.model.Boy;
 import com.binary_tree.binary_tree.model.Node;
 import com.binary_tree.binary_tree.service.BinaryTreeService;
@@ -29,19 +30,19 @@ public class BinaryTreeController {
 
     @GetMapping("/preorder")
     public @ResponseBody
-    ResponseEntity<?> listBoysPreOrden() throws BinaryTreeException {
+    ResponseEntity<?> listBoysPreOrder() throws DataNotFoundException {
         return binaryTreeService.listBoys(1);
     }
 
     @GetMapping("/inorder")
     public @ResponseBody
-    ResponseEntity<?> listBoysInOrden() throws BinaryTreeException {
+    ResponseEntity<?> listBoysInOrder() throws DataNotFoundException {
         return binaryTreeService.listBoys(2);
     }
 
     @GetMapping("/postorder")
     public @ResponseBody
-    ResponseEntity<?> listBoysPostOrden() throws BinaryTreeException {
+    ResponseEntity<?> listBoysPostOrder() throws DataNotFoundException {
         return binaryTreeService.listBoys(3);
     }
 
@@ -66,7 +67,7 @@ public class BinaryTreeController {
     @GetMapping("/listLeaves")
     public @ResponseBody
     ResponseEntity<?> listLeaf() throws BinaryTreeException {
-        return binaryTreeService.listGetLeafs();
+        return binaryTreeService.listGetLeaves();
     }
 
 

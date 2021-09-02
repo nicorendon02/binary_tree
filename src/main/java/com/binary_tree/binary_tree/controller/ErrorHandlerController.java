@@ -17,17 +17,28 @@ import java.util.List;
 
 @ControllerAdvice
 public class ErrorHandlerController {
+
+    @ExceptionHandler(DataNotFoundException.class)
+    protected ResponseEntity<?> handle(DataNotFoundException ex) {
+
+        List<ErrorDTO> errorsNotFound = new ArrayList<>();
+        errorsNotFound.add(new ErrorDTO(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
+        String message = "There is no data";
+        ResponseBinaryTreeDto response = new ResponseBinaryTreeDto(null, message, errorsNotFound);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(BinaryTreeException.class)
     protected ResponseEntity<?> handle(BinaryTreeException ex) {
 
         List<ErrorDTO> errors = new ArrayList<>();
         errors.add(new ErrorDTO(HttpStatus.CONFLICT.value(), ex.getMessage()));
-        String message = "Ha ocurrido una falla de lógica de negocio";
+        String message = "A logic failure has occurred!";
         ResponseBinaryTreeDto response = new ResponseBinaryTreeDto(null, message, errors);
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-
-
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
+
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<?> handle(MethodArgumentNotValidException ex) {
@@ -53,13 +64,4 @@ public class ErrorHandlerController {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(DataNotFoundException.class)
-    protected ResponseEntity<?> handle(DataNotFoundException ex) {
-
-        List<ErrorDTO> errorsNotFound = new ArrayList<>();
-        errorsNotFound.add(new ErrorDTO(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
-        String message = "No hay datos";
-        ResponseBinaryTreeDto response = new ResponseBinaryTreeDto(null, message, errorsNotFound);
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
 }

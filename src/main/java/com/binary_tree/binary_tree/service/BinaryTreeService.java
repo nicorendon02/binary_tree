@@ -3,6 +3,7 @@ package com.binary_tree.binary_tree.service;
 import com.binary_tree.binary_tree.application.dto.ResponseBinaryTreeDto;
 import com.binary_tree.binary_tree.controller.dto.ErrorDTO;
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
+import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import com.binary_tree.binary_tree.model.BinaryTree;
 import com.binary_tree.binary_tree.model.Boy;
 import com.binary_tree.binary_tree.model.Node;
@@ -27,15 +28,14 @@ public class BinaryTreeService {
         // call the first method located in BinaryTree
         binaryTree.addBoy(boy);
         // Once the Boy is added correctly...
-        return new ResponseEntity<>(new ResponseBinaryTreeDto(boy,"Boy saved correctly!",
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(boy,"Boy added correctly!",
                         null),HttpStatus.OK);
-
     }
 
-    public ResponseEntity<ResponseBinaryTreeDto> listBoys(int which) throws BinaryTreeException
+    // ResponseEntity for listBoys methods
+    public ResponseEntity<ResponseBinaryTreeDto> listBoys(int which) throws DataNotFoundException
     {
-        return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.listBoys(which),"Successful!",
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(binaryTree.listBoys(which),"Successful!",
                         null),HttpStatus.OK);
 
     }
@@ -65,10 +65,10 @@ public class BinaryTreeService {
 
     }
 
-    public ResponseEntity<ResponseBinaryTreeDto> listGetLeafs() throws BinaryTreeException
+    public ResponseEntity<ResponseBinaryTreeDto> listGetLeaves() throws BinaryTreeException
     {
         return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.getLeafs(),"List Success",
+                new ResponseBinaryTreeDto(binaryTree.getLeaves(),"List Success",
                         null),HttpStatus.OK);
 
     }
