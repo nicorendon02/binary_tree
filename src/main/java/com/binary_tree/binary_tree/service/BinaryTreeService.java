@@ -62,7 +62,7 @@ public class BinaryTreeService {
 
     }
 
-    public ResponseEntity<ResponseBinaryTreeDto> listGetLeaves() throws BinaryTreeException
+    public ResponseEntity<ResponseBinaryTreeDto> getLeaves() throws DataNotFoundException
     {
         return new ResponseEntity<>(
                 new ResponseBinaryTreeDto(binaryTree.getLeaves(),"List Success",

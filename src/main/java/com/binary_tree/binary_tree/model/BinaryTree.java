@@ -90,19 +90,20 @@ public class BinaryTree {
         throw new BinaryTreeException("No existen datos con este numero en comun");
     }
 
-
-    public List<Boy> getLeaves() throws BinaryTreeException
+    // Method to show all existing Leaves in the Tree
+    public List<Boy> getLeaves() throws DataNotFoundException
     {
+        // if root has something...
         if(root!=null)
         {
+            // call the method in Node
             return root.getLeaves();
         }
         else
         {
-            throw new BinaryTreeException("El arbol esta vacio");
+            throw new DataNotFoundException("The tree is empty");
         }
     }
-
 
 
     //REVIEW THIS ONE / What does it return?
