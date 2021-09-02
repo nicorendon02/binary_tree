@@ -78,6 +78,7 @@ public class BinaryTree {
         throw new DataNotFoundException("There are no Boys yet");
     }
 
+    // REVIEW THIS ONE
     public int counterEqualNum(Node node, int number)throws BinaryTreeException{
         if(node != null){
             int cont=0;
@@ -105,21 +106,26 @@ public class BinaryTree {
         }
     }
 
-
-    //REVIEW THIS ONE / What does it return?
-    public void prune() throws DataNotFoundException
+    // Method to prune the existing Leaves
+    public boolean prune() throws DataNotFoundException
     {
+        // if root has something...
         if(root!=null)
         {
+            // if root is a Leaf...
             if(root.isLeaf())
             {
+                // set root as null
                 root=null;
+                return true;
             }
             else
             {
+                // call the Method in Node
                 root.prune();
+                return true;
             }
         }
-        throw new DataNotFoundException("No hay datos que mostrar");
+        throw new DataNotFoundException("There are no data to prune");
     }
 }

@@ -54,6 +54,7 @@ public class BinaryTreeService {
 
     }
 
+    // REVIEW THIS ONE
     public ResponseEntity<ResponseBinaryTreeDto> counterEqualNum(Node node, int number) throws BinaryTreeException
     {
         return new ResponseEntity<>(
@@ -66,6 +67,15 @@ public class BinaryTreeService {
     {
         return new ResponseEntity<>(
                 new ResponseBinaryTreeDto(binaryTree.getLeaves(),"List Success",
+                        null),HttpStatus.OK);
+
+    }
+
+    // ResponseEntity to prune the existing Leaves in the Tree
+    public ResponseEntity<ResponseBinaryTreeDto> prune() throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.prune(),"successful pruning",
                         null),HttpStatus.OK);
 
     }

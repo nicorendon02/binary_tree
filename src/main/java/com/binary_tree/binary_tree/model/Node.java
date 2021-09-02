@@ -195,20 +195,37 @@ public class Node {
         return getLeaves;
     }
 
+    // Method to prune all existing Leaves in the Tree
     public void prune()
     {
-        if (this.getRight() != null) {
-            if (this.getRight().isLeaf()) {
-                this.setRight(null);
-            } else {
-                this.getRight().prune();
+        // if root Left has something...
+        if (this.getLeft() != null)
+        {
+            // ir root Left is a Leaf...
+            if (this.getLeft().isLeaf())
+            {
+                // set root Left as null
+                this.setLeft(null);
+            }
+            else
+            {
+                // move to the Left and call the Method AGAIN!
+                this.getLeft().prune();
             }
         }
-        if (this.getLeft() != null) {
-            if (this.getLeft().isLeaf()) {
-                this.setLeft(null);
-            } else {
-                this.getLeft().prune();
+        // if root Right has something...
+        if (this.getRight() != null)
+        {
+            // is root Right is a Leaf...
+            if (this.getRight().isLeaf())
+            {
+                // set root Right as null
+                this.setRight(null);
+            }
+            else
+            {
+                // move to the Right and call the Method AGAIN!
+                this.getRight().prune();
             }
         }
     }

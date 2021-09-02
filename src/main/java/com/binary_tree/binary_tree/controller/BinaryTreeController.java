@@ -61,6 +61,7 @@ public class BinaryTreeController {
 
      */
 
+    // REVIEW THIS ONE
     @GetMapping("/countEqualNum")
     public @ResponseBody
     ResponseEntity<?> counterEqualNum(Path.Node node, int number) throws BinaryTreeException {
@@ -71,5 +72,12 @@ public class BinaryTreeController {
     public @ResponseBody
     ResponseEntity<?> getLeaves() throws DataNotFoundException {
         return binaryTreeService.getLeaves();
+    }
+
+    // prune the existing Leaves in the Tree
+    @GetMapping("/prune")
+    public @ResponseBody
+    ResponseEntity<?> prune() throws DataNotFoundException {
+        return binaryTreeService.prune();
     }
 }
