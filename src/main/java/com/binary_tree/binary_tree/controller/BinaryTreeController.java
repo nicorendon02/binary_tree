@@ -48,20 +48,23 @@ public class BinaryTreeController {
 
     @GetMapping("/count")
     public @ResponseBody
-    ResponseEntity<?> countBinaryTree() throws BinaryTreeException {
+    ResponseEntity<?> countBinaryTree() throws DataNotFoundException {
         return binaryTreeService.count();
     }
 
-    @GetMapping("/countnumber")
+    /*
+    @GetMapping("/listEqualNum", value = (int number))
+    public @ResponseBody
+    ResponseEntity<?> listEqualNum(int number) throws DataNotFoundException {
+        return binaryTreeService.listEqualNum(number);
+    }
+
+     */
+
+    @GetMapping("/countNumber")
     public @ResponseBody
     ResponseEntity<?> counterEqualNum(Path.Node node, int number) throws BinaryTreeException {
         return binaryTreeService.counterEqualNum((Node) node,number);
-    }
-
-    @GetMapping("/listNum")
-    public @ResponseBody
-    ResponseEntity<?> listEqualNum(int number) throws BinaryTreeException {
-        return binaryTreeService.listEqualNum(number);
     }
 
     @GetMapping("/listLeaves")
@@ -69,6 +72,5 @@ public class BinaryTreeController {
     ResponseEntity<?> listLeaf() throws BinaryTreeException {
         return binaryTreeService.listGetLeaves();
     }
-
 
 }

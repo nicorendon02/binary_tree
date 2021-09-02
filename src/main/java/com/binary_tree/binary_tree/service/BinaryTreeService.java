@@ -1,7 +1,6 @@
 package com.binary_tree.binary_tree.service;
 
 import com.binary_tree.binary_tree.application.dto.ResponseBinaryTreeDto;
-import com.binary_tree.binary_tree.controller.dto.ErrorDTO;
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
 import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import com.binary_tree.binary_tree.model.BinaryTree;
@@ -10,9 +9,6 @@ import com.binary_tree.binary_tree.model.Node;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 // Using Lombok Annotations
 @Service
@@ -40,11 +36,20 @@ public class BinaryTreeService {
 
     }
 
-
-    public ResponseEntity<ResponseBinaryTreeDto> count()
+    // ResponseEntity to count Boys
+    public ResponseEntity<ResponseBinaryTreeDto> count() throws DataNotFoundException
     {
         return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.getCount(),"The counter is empty",
+                new ResponseBinaryTreeDto(binaryTree.count(),"Successful!",
+                        null),HttpStatus.OK);
+
+    }
+
+    // ResponseEntity to list Boys who end in a certain number given by the user
+    public ResponseEntity<ResponseBinaryTreeDto> listEqualNum(int number) throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.listEqualNum(number),"Successful List",
                         null),HttpStatus.OK);
 
     }
@@ -52,15 +57,7 @@ public class BinaryTreeService {
     public ResponseEntity<ResponseBinaryTreeDto> counterEqualNum(Node node, int number) throws BinaryTreeException
     {
         return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.counterEqualNum(node,number),"Counter Success",
-                        null),HttpStatus.OK);
-
-    }
-
-    public ResponseEntity<ResponseBinaryTreeDto> listEqualNum(int number) throws BinaryTreeException
-    {
-        return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.listEqualNum(number),"List Success",
+                new ResponseBinaryTreeDto(binaryTree.counterEqualNum(node,number),"Successful Counter",
                         null),HttpStatus.OK);
 
     }

@@ -5,7 +5,6 @@ import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // using the Lombok Annotations
@@ -36,6 +35,7 @@ public class BinaryTree {
         count ++;
     }
 
+    // method to ListBoys using Sorting Methods
     public List<Boy> listBoys(int which) throws DataNotFoundException
     {
         if (root == null)
@@ -57,16 +57,25 @@ public class BinaryTree {
         }
     }
 
-    public List<Boy> getLeaves() throws BinaryTreeException
+    // Method to count how many Boys are in there
+    public int count() throws DataNotFoundException
     {
-        if(root!=null)
+        if(this.getCount() != 0)
         {
-            return root.getLeaves();
+            return this.getCount();
         }
-        else
+        throw new DataNotFoundException("The counter is empty");
+    }
+
+    // Method to show the Boys ending in a certain number given by the user
+    public List<Boy> listEqualNum(int number) throws DataNotFoundException
+    {
+        // if root has something...
+        if (root!=null)
         {
-            throw new BinaryTreeException("El arbol esta vacio");
+            return root.listEqualNum(number);
         }
+        throw new DataNotFoundException("There are no Boys yet");
     }
 
     public int counterEqualNum(Node node, int number)throws BinaryTreeException{
@@ -82,15 +91,19 @@ public class BinaryTree {
     }
 
 
-    public List<Boy> listEqualNum(int number) throws BinaryTreeException{
-        List<Boy> listEqualNum = new ArrayList<>();
-
-        if (root!=null){
-
-            return root.listEqualNum(number);
+    public List<Boy> getLeaves() throws BinaryTreeException
+    {
+        if(root!=null)
+        {
+            return root.getLeaves();
         }
-        throw new BinaryTreeException("No hay datos en la lista");
+        else
+        {
+            throw new BinaryTreeException("El arbol esta vacio");
+        }
     }
+
+
 
     //REVIEW THIS ONE / What does it return?
     public void prune() throws DataNotFoundException

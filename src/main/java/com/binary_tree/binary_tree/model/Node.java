@@ -23,13 +23,6 @@ public class Node {
         this.grade = 1;
     }
 
-    // validate if the Node is a Leaf
-    public boolean isLeaf()
-    {
-        // return TRUE if the Node has Left & Right == null
-        return left ==null && right==null;
-    }
-
     // addBoy method signature (throws Exception in case of a mistake)
     public void addBoy(Boy data) throws BinaryTreeException
     {
@@ -134,57 +127,76 @@ public class Node {
         return listBoysPostOrder;
     }
 
-    public List<Boy> listEqualNum(int number) {
+    // method to return which boys' IDs end in a certain number given by user
+    public List<Boy> listEqualNum(int number)
+    {
+        // Creating a new List...
         List<Boy> listEqualNum = new ArrayList<>();
-
-        listEqualNum.add(this.getData());
-
-        if (this.getLeft() != null) {
-            if (this.getData().getIdentification() % 10 == number) {
-
+        // Validate if root ends in number
+        if(this.getData().getIdentification() %10 == number)
+        {
+            listEqualNum.add(this.getData());
+        }
+        // if root Left has something...
+        if (this.getLeft() != null)
+        {
+            // if root Left ends in number...
+            if (this.getData().getIdentification() % 10 == number)
+            {
+                // add to the List and move to the Left and call the method AGAIN!
                 listEqualNum.addAll(this.getLeft().listEqualNum(number));
             }
         }
-
-        if (this.getRight() != null) {
-            if (this.getData().getIdentification() % 10 == number) {
+        // if root Right has something...
+        if (this.getRight() != null)
+        {
+            // if root Right ends in number...
+            if (this.getData().getIdentification() % 10 == number)
+            {
+                // add to the List and move to the Right and call the method AGAIN!
                 listEqualNum.addAll(this.getRight().listEqualNum(number));
-
             }
         }
+        // Once finished return the List
         return listEqualNum;
-
     }
 
+    // validate if the Node is a Leaf
+    public boolean isLeaf()
+    {
+        // return TRUE if the Node has Left & Right == null
+        return left ==null && right==null;
+    }
 
+    // Method to get All existing Leaves
     public List<Boy> getLeaves() {
+        // Generate a new List
         List<Boy> getLeaves = new ArrayList<>();
+        // if root is a Leaf...
         if (this.isLeaf()) {
             getLeaves.add(this.getData());
-        } else {
-            if (this.getLeft() != null) {
+        }
+        else
+        {
+            // if root Left has something...
+            if (this.getLeft() != null)
+            {
+                // add to the List and move to the Left and call the method AGAIN!
                 getLeaves.addAll(this.getLeft().getLeaves());
-
-
             }
-            if (this.getRight() != null) {
+            // if root Right has something...
+            if (this.getRight() != null)
+            {
+                // add to the List and move to the Right and call the method AGAIN!
                 getLeaves.addAll(this.getRight().getLeaves());
             }
-
         }
+        // Once finished return the List
         return getLeaves;
     }
 
-    //REVIEW THIS ONE
-    public List<Boy> isEqualAndLeaf(int number)
+    public void prune()
     {
-        List<Boy> listEqualAndLeaf = new ArrayList<>();
-        List<Boy> listEqual = new ArrayList<>();
-
-        return listEqualAndLeaf;
-    }
-
-    public void prune() {
         if (this.getRight() != null) {
             if (this.getRight().isLeaf()) {
                 this.setRight(null);
@@ -201,6 +213,7 @@ public class Node {
         }
     }
 
+    //REVIEW THIS ONE
     public int calculateGrade()
     {
         this.grade = 1;
@@ -212,5 +225,14 @@ public class Node {
             return 0;
         }
         return 0;
+    }
+
+    //REVIEW THIS ONE
+    public List<Boy> isEqualAndLeaf(int number)
+    {
+        List<Boy> listEqualAndLeaf = new ArrayList<>();
+        List<Boy> listEqual = new ArrayList<>();
+
+        return listEqualAndLeaf;
     }
 }
