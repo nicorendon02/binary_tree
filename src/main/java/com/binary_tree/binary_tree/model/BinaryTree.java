@@ -68,27 +68,30 @@ public class BinaryTree {
     }
 
     // Method to show the Boys ending in a certain number given by the user
-    public List<Boy> listEqualNum(int number) throws DataNotFoundException
+    public List<Boy> listEndEqualNum(int number) throws DataNotFoundException
     {
         // if root has something...
         if (root!=null)
         {
-            return root.listEqualNum(number);
+            // call the method in Node
+            return root.listEndEqualNum(number);
         }
         throw new DataNotFoundException("There are no Boys yet");
     }
 
-    // REVIEW THIS ONE
-    public int counterEqualNum(Node node, int number)throws BinaryTreeException{
+    // Method to count Boy's ID that end in the same number
+    public int countEndEqualNum(Node node, int number) throws DataNotFoundException
+    {
+        //
         if(node != null){
             int cont=0;
             if(node.getData().getIdentification()%10 == number){
                 cont = 1;
 
             }
-            return cont + counterEqualNum(node.getLeft(), number) + counterEqualNum(node.getRight(),number);
+            return cont + countEndEqualNum(node.getLeft(), number) + countEndEqualNum(node.getRight(),number);
         }
-        throw new BinaryTreeException("No existen datos con este numero en comun");
+        throw new DataNotFoundException("There are no data ending in that number");
     }
 
     // Method to show all existing Leaves in the Tree

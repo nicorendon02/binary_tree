@@ -1,6 +1,7 @@
 package com.binary_tree.binary_tree.model;
 
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
+import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -128,14 +129,14 @@ public class Node {
     }
 
     // method to return which boys' IDs end in a certain number given by user
-    public List<Boy> listEqualNum(int number)
+    public List<Boy> listEndEqualNum(int number) throws DataNotFoundException
     {
         // Creating a new List...
-        List<Boy> listEqualNum = new ArrayList<>();
+        List<Boy> listEndEqualNum = new ArrayList<>();
         // Validate if root ends in number
         if(this.getData().getIdentification() %10 == number)
         {
-            listEqualNum.add(this.getData());
+            listEndEqualNum.add(this.getData());
         }
         // if root Left has something...
         if (this.getLeft() != null)
@@ -144,7 +145,7 @@ public class Node {
             if (this.getData().getIdentification() % 10 == number)
             {
                 // add to the List and move to the Left and call the method AGAIN!
-                listEqualNum.addAll(this.getLeft().listEqualNum(number));
+                listEndEqualNum.addAll(this.getLeft().listEndEqualNum(number));
             }
         }
         // if root Right has something...
@@ -154,11 +155,19 @@ public class Node {
             if (this.getData().getIdentification() % 10 == number)
             {
                 // add to the List and move to the Right and call the method AGAIN!
-                listEqualNum.addAll(this.getRight().listEqualNum(number));
+                listEndEqualNum.addAll(this.getRight().listEndEqualNum(number));
             }
         }
+
+        // HELP WITH THIS VALIDATION!!
+        /*
+        if(listEqualNum.isEmpty()){
+            throw new DataNotFoundException("no hay niños terminados en ese numero");
+        }
+         */
+
         // Once finished return the List
-        return listEqualNum;
+        return listEndEqualNum;
     }
 
     // validate if the Node is a Leaf
