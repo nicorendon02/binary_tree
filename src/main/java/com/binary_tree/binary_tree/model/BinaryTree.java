@@ -85,8 +85,17 @@ public class BinaryTree {
         // if root has something...
         if(root != null)
         {
-            // call the method in Node
-            return root.countEndEqualNum(number);
+            // if the counter found boys ending in that number...
+            if(root.countEndEqualNum(number) != 0)
+            {
+                // call the method in Node
+                return root.countEndEqualNum(number);
+            }
+            // if the counter couldn't find boys ending in that number...
+            else
+            {
+                throw new DataNotFoundException("There are no boys ending in that number");
+            }
         }
         throw new DataNotFoundException("There are no boys yet");
     }
