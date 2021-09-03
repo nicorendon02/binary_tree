@@ -129,7 +129,7 @@ public class Node {
     }
 
     // method to return which boys' IDs end in a certain number given by user
-    public List<Boy> listEndEqualNum(int number) throws DataNotFoundException
+    public List<Boy> listEndEqualNum(int number) //throws DataNotFoundException
     {
         // Creating a new List...
         List<Boy> listEndEqualNum = new ArrayList<>();
@@ -168,6 +168,15 @@ public class Node {
 
         // Once finished return the List
         return listEndEqualNum;
+    }
+
+    // Method to count how many Boys' ID end in a certain number given by the user
+    public int countEndEqualNum(int number)
+    {
+        // set a new variable with the list that the method above returns...
+        List<Boy> listBoysEndEqualNum = listEndEqualNum(number);
+        // return the list Size (int)...
+        return listBoysEndEqualNum.size();
     }
 
     // validate if the Node is a Leaf

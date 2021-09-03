@@ -58,10 +58,10 @@ public class BinaryTreeController {
         return binaryTreeService.listEndEqualNum(number);
     }
 
-    @GetMapping("/countEndEqualNum")
+    @GetMapping("/countEndEqualNum/{number}")
     public @ResponseBody
-    ResponseEntity<?> countEndEqualNum(Path.Node node, int number) throws DataNotFoundException {
-        return binaryTreeService.countEndEqualNum((Node) node,number);
+    ResponseEntity<?> countEndEqualNum(@PathVariable int number) throws DataNotFoundException {
+        return binaryTreeService.countEndEqualNum(number);
     }
 
     @GetMapping("/getLeaves")

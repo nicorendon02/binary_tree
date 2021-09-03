@@ -54,11 +54,11 @@ public class BinaryTreeService {
 
     }
 
-    // ResponseEntity to show how many ID's end in a certain number given by user
-    public ResponseEntity<ResponseBinaryTreeDto> countEndEqualNum(Node node, int number) throws DataNotFoundException
+    // ResponseEntity to show how many ID's end in a certain number given by the user
+    public ResponseEntity<ResponseBinaryTreeDto> countEndEqualNum(int number) throws DataNotFoundException
     {
         return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(binaryTree.countEndEqualNum(node,number),"Successful Counter",
+                new ResponseBinaryTreeDto(binaryTree.countEndEqualNum(number),"Successful Counter",
                         null),HttpStatus.OK);
 
     }

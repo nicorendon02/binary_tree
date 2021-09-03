@@ -80,18 +80,15 @@ public class BinaryTree {
     }
 
     // Method to count Boy's ID that end in the same number
-    public int countEndEqualNum(Node node, int number) throws DataNotFoundException
+    public int countEndEqualNum(int number) throws DataNotFoundException
     {
-        //
-        if(node != null){
-            int cont=0;
-            if(node.getData().getIdentification()%10 == number){
-                cont = 1;
-
-            }
-            return cont + countEndEqualNum(node.getLeft(), number) + countEndEqualNum(node.getRight(),number);
+        // if root has something...
+        if(root != null)
+        {
+            // call the method in Node
+            return root.countEndEqualNum(number);
         }
-        throw new DataNotFoundException("There are no data ending in that number");
+        throw new DataNotFoundException("There are no boys yet");
     }
 
     // Method to show all existing Leaves in the Tree
