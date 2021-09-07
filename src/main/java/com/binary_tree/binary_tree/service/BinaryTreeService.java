@@ -79,4 +79,13 @@ public class BinaryTreeService {
                         null),HttpStatus.OK);
 
     }
+
+    // ResponseEntity to calculate the Tree Grade
+    public ResponseEntity<ResponseBinaryTreeDto> calculateTreeGrade() throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.calculateTreeGrade(),"successful",
+                        null),HttpStatus.OK);
+
+    }
 }

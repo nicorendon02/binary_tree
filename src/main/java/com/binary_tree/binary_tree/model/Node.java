@@ -248,18 +248,44 @@ public class Node {
         }
     }
 
-    //REVIEW THIS ONE
-    public int calculateGrade()
+    // Method to calculate Tree Grade
+    public int calculateTreeGrade()
     {
-        this.grade = 1;
-        int gradeLeft = 0;
-        int gradeRight = 0;
-        if(this.getLeft() != null)
+        int gradeLeft = 0, gradeRight = 0;
+        // if the current Node is a Leaf...
+        if(this.isLeaf())
         {
-            // finish this one!!!
-            return 0;
+            return 1;
         }
-        return 0;
+        // if the current Node has kids...
+        else
+        {
+            // if current on the Left has something...
+            if(this.getLeft() != null)
+            {
+                // calculate grade on the Left and save the number in gradeLeft
+                gradeLeft = this.getLeft().calculateTreeGrade();
+            }
+            // if current on the Right has something...
+            if(this.getRight() != null)
+            {
+                // calculate grade on the Right and save the number in gradeRight
+                gradeRight = this.getRight().calculateTreeGrade();
+            }
+        }
+        // ---- RETURN 1 + MY LARGEST CHILD ----
+        // if current on the Left is >= current on the Right...
+        if(gradeLeft >= gradeRight)
+        {
+            // return current (1) + current Left Grade
+            return 1 + gradeLeft;
+        }
+        // if current on the Left < current on the Right...
+        else
+        {
+            // return current (1) + current Right Grade
+            return 1 + gradeRight;
+        }
     }
 
     //REVIEW THIS ONE

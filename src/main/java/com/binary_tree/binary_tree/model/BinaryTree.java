@@ -137,4 +137,14 @@ public class BinaryTree {
         }
         throw new DataNotFoundException("There are no data to prune");
     }
+
+    public int calculateTreeGrade() throws DataNotFoundException
+    {
+        // if root has something...
+        if(root != null)
+        {
+            return root.calculateTreeGrade();
+        }
+        throw new DataNotFoundException("There are no boys yet");
+    }
 }

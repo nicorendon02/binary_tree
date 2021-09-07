@@ -76,4 +76,11 @@ public class BinaryTreeController {
     ResponseEntity<?> prune() throws DataNotFoundException {
         return binaryTreeService.prune();
     }
+
+    // calculate Tree Grade
+    @GetMapping("/treeGrade")
+    public @ResponseBody
+    ResponseEntity<?> calculateTreeGrade() throws DataNotFoundException {
+        return binaryTreeService.calculateTreeGrade();
+    }
 }
