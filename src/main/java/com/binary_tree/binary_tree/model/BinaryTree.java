@@ -161,26 +161,18 @@ public class BinaryTree {
         throw new DataNotFoundException("There are no boys yet");
     }
 
-    //REVIEW THIS ONE (LOGIC ERRORS!)
+    // get Boys by Level
     public List<Boy> getBoysByLevel(int wantedLevel) throws DataNotFoundException,BinaryTreeException
     {
         // if root has something...
         if(root!=null)
         {
-            if(wantedLevel <= root.getGrade())
+            // if wanted Level exists...
+            if(wantedLevel <= root.calculateTreeGrade())
             {
-                if(wantedLevel==1)
-                {
-                    List<Boy> listBoysLevel = new ArrayList<>();
-                    listBoysLevel.add(root.getData());
-                    return listBoysLevel;
-                }
-                else
-                {
-                    return root.getBoysByLevel(wantedLevel,1);
-                }
+                return root.getBoysByLevel(1, wantedLevel);
             }
-            throw new BinaryTreeException("El level ingresado no existe");
+            throw new BinaryTreeException("This level does not exist");
         }
         throw new DataNotFoundException("There are no boys yet");
     }

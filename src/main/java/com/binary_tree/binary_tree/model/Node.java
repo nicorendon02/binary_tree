@@ -340,36 +340,29 @@ public class Node {
 
     //REVIEW THIS ONE (LOGIC ERRORS!)
     // Method to get All Boys of a certain Level given by user
-    public List<Boy> getBoysByLevel(int wantedLevel, int currentLevel)
+    public List<Boy> getBoysByLevel(int currentLevel, int wantedLevel)
     {
         // Generating a List...
         List<Boy> listBoysLevel= new ArrayList<>();
-        if(this.isLeaf())
+        // if current level is equal to wanted level...
+        if(currentLevel == wantedLevel)
         {
-            return listBoysLevel;
-        }
-
-        if(wantedLevel == currentLevel+1)
-        {
-
-            if(this.getLeft()!=null)
-            {
-                listBoysLevel.add(this.getLeft().getData());
-            }
-            if(this.getRight()!=null)
-            {
-                listBoysLevel.add(this.getRight().getData());
-            }
+            // add current to the List
+            listBoysLevel.add(this.data);
         }
         else
         {
-            if(this.getLeft()!=null)
+            // if current on the Left has something...
+            if(this.getLeft() != null)
             {
-                listBoysLevel.addAll(this.getLeft().getBoysByLevel(wantedLevel,currentLevel+1));
+                // call the Method again and add all on the Left (go down 1 level)
+                listBoysLevel.addAll(this.getLeft().getBoysByLevel(currentLevel+1, wantedLevel));
             }
-            if(this.getRight()!=null)
+            // if current on the Right has something...
+            if(this.getRight() != null)
             {
-                listBoysLevel.addAll(this.getRight().getBoysByLevel(wantedLevel,currentLevel+1));
+                // call the Method again and add all on the Right (go down 1 level)
+                listBoysLevel.addAll(this.getRight().getBoysByLevel(currentLevel+1, wantedLevel));
             }
         }
         return listBoysLevel;
