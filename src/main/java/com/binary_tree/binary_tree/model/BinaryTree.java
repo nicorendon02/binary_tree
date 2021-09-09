@@ -176,4 +176,15 @@ public class BinaryTree {
         }
         throw new DataNotFoundException("There are no boys yet");
     }
+
+    // get Boys that end in a certain number and are Leaves
+    public List<Boy> isEqualAndLeaf(int number) throws DataNotFoundException
+    {
+        // if root has something...
+        if(root != null)
+        {
+            return root.isEqualAndLeaf(number);
+        }
+        throw new DataNotFoundException("There are no boys yet");
+    }
 }

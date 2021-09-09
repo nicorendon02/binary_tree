@@ -368,12 +368,29 @@ public class Node {
         return listBoysLevel;
     }
 
-    //REVIEW THIS ONE
+    // Method to get Boys that end in a certain number and are Leaves
     public List<Boy> isEqualAndLeaf(int number)
     {
+        // Generating the List...
         List<Boy> listEqualAndLeaf = new ArrayList<>();
-        List<Boy> listEqual = new ArrayList<>();
-
+        // if current ends in the number and is a Leaf
+        if(this.getData().getIdentification() %10 == number && this.isLeaf())
+        {
+            // add current to the List
+            listEqualAndLeaf.add(this.data);
+        }
+        // if current on the Left has something...
+        if(this.getLeft() != null)
+        {
+            // call the Method again and add All on the Left
+            listEqualAndLeaf.addAll(this.getLeft().isEqualAndLeaf(number));
+        }
+        // if current on the Right has something...
+        if(this.getRight() != null)
+        {
+            // call the Method again and add All on the Right
+            listEqualAndLeaf.addAll(this.getRight().isEqualAndLeaf(number));
+        }
         return listEqualAndLeaf;
     }
 }

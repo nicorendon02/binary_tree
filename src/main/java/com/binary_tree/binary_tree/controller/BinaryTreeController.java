@@ -97,4 +97,11 @@ public class BinaryTreeController {
     ResponseEntity<?> getBoysByLevel(@PathVariable int level) throws DataNotFoundException, BinaryTreeException {
         return binaryTreeService.getBoysByLevel(level);
     }
+
+    // get Boys that end in a certain number and are Leaves
+    @GetMapping("/equalAndLeaf/{number}")
+    public @ResponseBody
+    ResponseEntity<?> isEqualAndLeaf(@PathVariable int number) throws DataNotFoundException {
+        return binaryTreeService.isEqualAndLeaf(number);
+    }
 }

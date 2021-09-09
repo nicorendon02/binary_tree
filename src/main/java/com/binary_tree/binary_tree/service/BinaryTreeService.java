@@ -107,4 +107,13 @@ public class BinaryTreeService {
                         null),HttpStatus.OK);
 
     }
+
+    // ResponseEntity to get Boys that end in a certain number and are Leaves
+    public ResponseEntity<ResponseBinaryTreeDto> isEqualAndLeaf(int number) throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.isEqualAndLeaf(number),"successful List",
+                        null),HttpStatus.OK);
+
+    }
 }
