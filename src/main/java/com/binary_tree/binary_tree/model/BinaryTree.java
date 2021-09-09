@@ -1,10 +1,12 @@
 package com.binary_tree.binary_tree.model;
 
+import com.binary_tree.binary_tree.controller.dto.BoyGradeDTO;
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
 import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // using the Lombok Annotations
@@ -144,6 +146,41 @@ public class BinaryTree {
         if(root != null)
         {
             return root.calculateTreeGrade();
+        }
+        throw new DataNotFoundException("There are no boys yet");
+    }
+
+    // Get All Boys Grade
+    public List<BoyGradeDTO> getBoysGrade() throws DataNotFoundException
+    {
+        // if root has something...
+        if(root != null)
+        {
+            return root.getBoysGrade();
+        }
+        throw new DataNotFoundException("There are no boys yet");
+    }
+
+    //REVIEW THIS ONE (LOGIC ERRORS!)
+    public List<Boy> getBoysByLevel(int wantedLevel) throws DataNotFoundException,BinaryTreeException
+    {
+        // if root has something...
+        if(root!=null)
+        {
+            if(wantedLevel <= root.getGrade())
+            {
+                if(wantedLevel==1)
+                {
+                    List<Boy> listBoysLevel = new ArrayList<>();
+                    listBoysLevel.add(root.getData());
+                    return listBoysLevel;
+                }
+                else
+                {
+                    return root.getBoysByLevel(wantedLevel,1);
+                }
+            }
+            throw new BinaryTreeException("El level ingresado no existe");
         }
         throw new DataNotFoundException("There are no boys yet");
     }

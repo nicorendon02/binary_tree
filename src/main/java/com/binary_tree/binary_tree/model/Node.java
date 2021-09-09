@@ -1,5 +1,6 @@
 package com.binary_tree.binary_tree.model;
 
+import com.binary_tree.binary_tree.controller.dto.BoyGradeDTO;
 import com.binary_tree.binary_tree.exception.BinaryTreeException;
 import com.binary_tree.binary_tree.exception.DataNotFoundException;
 import lombok.*;
@@ -286,6 +287,92 @@ public class Node {
             // return current (1) + current Right Grade
             return 1 + gradeRight;
         }
+    }
+
+    // Method to get Boys Grade using a DataTransferObject
+    public List<BoyGradeDTO> getBoysGrade()
+    {
+        // Generating a List of BoyGradeDTO
+        List<BoyGradeDTO> listBoys = new ArrayList<>();
+        int gradeLeft = 0, gradeRight = 0;
+        // if the current Node is a Leaf...
+        if(this.isLeaf())
+        {
+            // create a DTO with currentNodeData and current grade (int)
+            listBoys.add(new BoyGradeDTO(this.data,this.grade));
+        }
+        // if the current Node has kids...
+        else
+        {
+            // if current on the Left has something...
+            if(this.getLeft() != null)
+            {
+                // calculate grade on the Left and save the number in gradeLeft
+                gradeLeft = this.getLeft().calculateTreeGrade();
+                // call the Method again and add All Boys on the Left
+                listBoys.addAll(this.getLeft().getBoysGrade());
+            }
+            // if current on the Right has something...
+            if(this.getRight() != null)
+            {
+                // calculate grade on the Right and save the number in gradeRight
+                gradeRight = this.getRight().calculateTreeGrade();
+                // call the Method again and add All Boys on the Right
+                listBoys.addAll(this.getRight().getBoysGrade());
+            }
+
+            // ---- RETURN 1 + MY LARGEST CHILD ----
+            // if current on the Left is >= current on the Right...
+            if(gradeLeft >= gradeRight)
+            {
+                // return current (1) + current Left Grade
+                listBoys.add(new BoyGradeDTO(this.data,1 + gradeLeft));
+            }
+            // if current on the Left < current on the Right...
+            else
+            {
+                // return current (1) + current Right Grade
+                listBoys.add(new BoyGradeDTO(this.data,1 + gradeRight));
+            }
+        }
+        return listBoys;
+    }
+
+    //REVIEW THIS ONE (LOGIC ERRORS!)
+    // Method to get All Boys of a certain Level given by user
+    public List<Boy> getBoysByLevel(int wantedLevel, int currentLevel)
+    {
+        // Generating a List...
+        List<Boy> listBoysLevel= new ArrayList<>();
+        if(this.isLeaf())
+        {
+            return listBoysLevel;
+        }
+
+        if(wantedLevel == currentLevel+1)
+        {
+
+            if(this.getLeft()!=null)
+            {
+                listBoysLevel.add(this.getLeft().getData());
+            }
+            if(this.getRight()!=null)
+            {
+                listBoysLevel.add(this.getRight().getData());
+            }
+        }
+        else
+        {
+            if(this.getLeft()!=null)
+            {
+                listBoysLevel.addAll(this.getLeft().getBoysByLevel(wantedLevel,currentLevel+1));
+            }
+            if(this.getRight()!=null)
+            {
+                listBoysLevel.addAll(this.getRight().getBoysByLevel(wantedLevel,currentLevel+1));
+            }
+        }
+        return listBoysLevel;
     }
 
     //REVIEW THIS ONE

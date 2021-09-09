@@ -83,4 +83,18 @@ public class BinaryTreeController {
     ResponseEntity<?> calculateTreeGrade() throws DataNotFoundException {
         return binaryTreeService.calculateTreeGrade();
     }
+
+    // get All Boys Grade
+    @GetMapping("/boysGrade")
+    public @ResponseBody
+    ResponseEntity<?> getBoysGrade() throws DataNotFoundException {
+        return binaryTreeService.getBoysGrade();
+    }
+
+    // get Boys by Level
+    @GetMapping("/boysByLevel/{level}")
+    public @ResponseBody
+    ResponseEntity<?> getBoysByLevel(@PathVariable int level) throws DataNotFoundException, BinaryTreeException {
+        return binaryTreeService.getBoysByLevel(level);
+    }
 }

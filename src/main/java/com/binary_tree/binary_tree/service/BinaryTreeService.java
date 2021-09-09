@@ -88,4 +88,23 @@ public class BinaryTreeService {
                         null),HttpStatus.OK);
 
     }
+
+    // ResponseEntity to get All Boys Grade
+    public ResponseEntity<ResponseBinaryTreeDto> getBoysGrade() throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.getBoysGrade(),"successful",
+                        null),HttpStatus.OK);
+
+    }
+
+    // ResponseEntity to get All Boys of a certain Level given by user
+    public ResponseEntity<ResponseBinaryTreeDto> getBoysByLevel(int wantedLevel) throws DataNotFoundException,
+            BinaryTreeException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.getBoysByLevel(wantedLevel),"successful",
+                        null),HttpStatus.OK);
+
+    }
 }
