@@ -10,7 +10,10 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class ResponseBinaryTreeDto implements Serializable {
+
+/* --implements Serializable-- is not necessary because the Annotation @Data
+contains it so that the Objects can travel through the Internet */
+public class ResponseBinaryTreeDto {
 
     private Object data;
     private String message;
