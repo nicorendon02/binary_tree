@@ -75,6 +75,10 @@ public class BinaryTree {
         // if root has something...
         if (root!=null)
         {
+            if(root.listEndEqualNum(number).isEmpty())
+            {
+                throw new DataNotFoundException("There are no Boys with that condition");
+            }
             // call the method in Node
             return root.listEndEqualNum(number);
         }
@@ -183,6 +187,10 @@ public class BinaryTree {
         // if root has something...
         if(root != null)
         {
+            if(root.isEqualAndLeaf(number).isEmpty())
+            {
+                throw new DataNotFoundException("There are no Boys with that condition");
+            }
             return root.isEqualAndLeaf(number);
         }
         throw new DataNotFoundException("There are no boys yet");
