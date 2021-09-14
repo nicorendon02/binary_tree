@@ -393,4 +393,37 @@ public class Node {
         }
         return listEqualAndLeaf;
     }
+
+    public void deleteBoy(int wantedId) throws BinaryTreeException
+    {
+        if(this.getData().getIdentification() == wantedId)
+        {
+            if(this.isLeaf())
+            {
+                this.setData(null);
+            }
+            else
+            {
+                //here
+            }
+        }
+        else
+        {
+            if(wantedId < this.getData().getIdentification())
+            {
+                if(this.getLeft() != null)
+                {
+                    this.getLeft().deleteBoy(wantedId);
+                }
+            }
+            else
+            {
+                if(this.getRight() != null)
+                {
+                    this.getRight().deleteBoy(wantedId);
+                }
+                throw new BinaryTreeException("The wanted Boy does not exist");
+            }
+        }
+    }
 }
