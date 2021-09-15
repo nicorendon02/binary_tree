@@ -394,21 +394,27 @@ public class Node {
         return listEqualAndLeaf;
     }
 
+    // Method to find the Largest ID of the Tree
     public Boy findLargestId()
     {
-        if(this.getRight() != null)
+        // if current on the Right has something...
+        if(this.getRight() == null)
         {
-            this.getRight().findLargestId();
+            return this.getData();
         }
-        return this.getData();
+        // Move to the Right until the Method finds a Node without kids on the Right
+        return this.getRight().findLargestId();
     }
 
+    // Method to find the Smallest ID of the Tree
     public Boy findSmallestId()
     {
-        if(this.getLeft() != null)
+        // if current on the Left has something...
+        if(this.getLeft() == null)
         {
-            this.getLeft().findSmallestId();
+            return this.getData();
         }
-        return this.getData();
+        // Move to the Left until the Method finds a Node without kids on the Left
+        return this.getLeft().findSmallestId();
     }
 }

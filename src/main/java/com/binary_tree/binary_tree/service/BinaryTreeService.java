@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 // Using Lombok Annotations
 @Service
 
@@ -136,11 +138,15 @@ public class BinaryTreeService {
     }
 
     // ResponseEntity to fill the Tree with a List of Boys
-    public ResponseEntity<ResponseBinaryTreeDto> fillTreeBoys() throws BinaryTreeException
+    public ResponseEntity<ResponseBinaryTreeDto> fillTreeBoys(List<Boy> boys) throws BinaryTreeException
     {
-        return new ResponseEntity<>(
-                new ResponseBinaryTreeDto(true,"successful",
+        // for each Boy in the List...
+        for(Boy boy:boys)
+        {
+            // add Boy to the Tree
+            binaryTree.addBoy(boy);
+        }
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(true,"successful",
                         null),HttpStatus.OK);
-
     }
 }

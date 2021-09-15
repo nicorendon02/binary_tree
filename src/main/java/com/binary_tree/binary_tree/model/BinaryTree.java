@@ -187,6 +187,7 @@ public class BinaryTree {
         // if root has something...
         if(root != null)
         {
+            // if the Method returns an Empty List...
             if(root.isEqualAndLeaf(number).isEmpty())
             {
                 throw new DataNotFoundException("There are no Boys with that condition");
@@ -196,8 +197,10 @@ public class BinaryTree {
         throw new DataNotFoundException("There are no boys yet");
     }
 
+    // Method to find the Largest ID of the Tree
     public Boy findLargestId() throws DataNotFoundException
     {
+        // if root has something...
         if(root != null)
         {
             return root.findLargestId();
@@ -205,8 +208,10 @@ public class BinaryTree {
         throw new DataNotFoundException("There are no Boys yet");
     }
 
+    // Method to find the Smallest ID of the Tree
     public Boy findSmallestId() throws DataNotFoundException
     {
+        // if root has something...
         if(root != null)
         {
             return root.findSmallestId();
