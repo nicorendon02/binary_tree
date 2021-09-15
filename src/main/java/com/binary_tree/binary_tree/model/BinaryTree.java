@@ -195,4 +195,22 @@ public class BinaryTree {
         }
         throw new DataNotFoundException("There are no boys yet");
     }
+
+    public Boy findLargestId() throws DataNotFoundException
+    {
+        if(root != null)
+        {
+            return root.findLargestId();
+        }
+        throw new DataNotFoundException("There are no Boys yet");
+    }
+
+    public Boy findSmallestId() throws DataNotFoundException
+    {
+        if(root != null)
+        {
+            return root.findSmallestId();
+        }
+        throw new DataNotFoundException("There are no Boys yet");
+    }
 }

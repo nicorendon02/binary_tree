@@ -394,36 +394,21 @@ public class Node {
         return listEqualAndLeaf;
     }
 
-    public void deleteBoy(int wantedId) throws BinaryTreeException
+    public Boy findLargestId()
     {
-        if(this.getData().getIdentification() == wantedId)
+        if(this.getRight() != null)
         {
-            if(this.isLeaf())
-            {
-                this.setData(null);
-            }
-            else
-            {
-                //here
-            }
+            this.getRight().findLargestId();
         }
-        else
+        return this.getData();
+    }
+
+    public Boy findSmallestId()
+    {
+        if(this.getLeft() != null)
         {
-            if(wantedId < this.getData().getIdentification())
-            {
-                if(this.getLeft() != null)
-                {
-                    this.getLeft().deleteBoy(wantedId);
-                }
-            }
-            else
-            {
-                if(this.getRight() != null)
-                {
-                    this.getRight().deleteBoy(wantedId);
-                }
-                throw new BinaryTreeException("The wanted Boy does not exist");
-            }
+            this.getLeft().findSmallestId();
         }
+        return this.getData();
     }
 }

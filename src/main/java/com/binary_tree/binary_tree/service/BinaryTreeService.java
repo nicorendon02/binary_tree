@@ -116,4 +116,31 @@ public class BinaryTreeService {
                         null),HttpStatus.OK);
 
     }
+
+    // ResponseEntity to find the Largest ID of the Tree
+    public ResponseEntity<ResponseBinaryTreeDto> findLargestId() throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.findLargestId(),"successful",
+                        null),HttpStatus.OK);
+
+    }
+
+    // ResponseEntity to find the Smallest ID of the Tree
+    public ResponseEntity<ResponseBinaryTreeDto> findSmallestId() throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.findSmallestId(),"successful",
+                        null),HttpStatus.OK);
+
+    }
+
+    // ResponseEntity to fill the Tree with a List of Boys
+    public ResponseEntity<ResponseBinaryTreeDto> fillTreeBoys() throws BinaryTreeException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(true,"successful",
+                        null),HttpStatus.OK);
+
+    }
 }

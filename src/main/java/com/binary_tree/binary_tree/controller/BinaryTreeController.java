@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Path;
 import javax.validation.Valid;
+import java.util.List;
 
 // Using Lombok Annotations...
 @RestController
@@ -103,5 +104,25 @@ public class BinaryTreeController {
     public @ResponseBody
     ResponseEntity<?> isEqualAndLeaf(@PathVariable int number) throws DataNotFoundException {
         return binaryTreeService.isEqualAndLeaf(number);
+    }
+
+    // find the Largest ID of the Tree
+    @GetMapping("/findLargestId")
+    public @ResponseBody
+    ResponseEntity<?> findLargestId() throws DataNotFoundException {
+        return binaryTreeService.findLargestId();
+    }
+
+    // find the Smallest ID of the Tree
+    @GetMapping("/findSmallestId")
+    public @ResponseBody
+    ResponseEntity<?> findSmallestId() throws DataNotFoundException {
+        return binaryTreeService.findSmallestId();
+    }
+
+    @PostMapping("/fill")
+    public @ResponseBody
+    ResponseEntity<?> fillTreeBoys(@RequestBody List<Boy> boys) throws BinaryTreeException {
+        return binaryTreeService.fillTreeBoys(boys);
     }
 }
