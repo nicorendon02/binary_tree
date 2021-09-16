@@ -126,4 +126,11 @@ public class BinaryTreeController {
     ResponseEntity<?> fillTreeBoys(@RequestBody List<Boy> boys) throws BinaryTreeException {
         return binaryTreeService.fillTreeBoys(boys);
     }
+
+    // find the father of a certain Boy' ID
+    @GetMapping("/findMyFather/{id}")
+    public @ResponseBody
+    ResponseEntity<?> findMyFather(@PathVariable int id) throws BinaryTreeException,DataNotFoundException {
+        return binaryTreeService.findMyFather(id);
+    }
 }

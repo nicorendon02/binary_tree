@@ -218,4 +218,25 @@ public class BinaryTree {
         }
         throw new DataNotFoundException("There are no Boys yet");
     }
+
+    // Method to find the father of a certain Boy' ID
+    public Boy findMyFather(int id) throws BinaryTreeException, DataNotFoundException
+    {
+        // if root has something...
+        if(root != null)
+        {
+            // if root ID == requested ID
+            if(root.getData().getIdentification() == id)
+            {
+                throw new BinaryTreeException("This Boy has no father");
+            }
+            // if the Method in Node returns NULL
+            else if(root.findMyFather(id) == null)
+            {
+                throw new DataNotFoundException("That Boy' ID does not exist");
+            }
+            return root.findMyFather(id);
+        }
+        throw new DataNotFoundException("There are no Boys yet");
+    }
 }

@@ -417,4 +417,41 @@ public class Node {
         // Move to the Left until the Method finds a Node without kids on the Left
         return this.getLeft().findSmallestId();
     }
+
+    // Method to find the father of a certain Boy' ID
+    public Boy findMyFather(int id)
+    {
+        // if the requested ID < current ID
+        if(id < this.getData().getIdentification())
+        {
+            // if current has something on the Left...
+            if(this.getLeft() != null)
+            {
+                // if current ID == requested ID
+                if(this.getLeft().getData().getIdentification() == id)
+                {
+                    // current is the father
+                    return this.getData();
+                }
+                // move to the Left and ask again
+                return this.getLeft().findMyFather(id);
+            }
+            // if current has nothing on the Left
+            return null;
+        }
+        // if current has something on the Right
+        if(this.getRight() != null)
+        {
+            // if current ID == requested ID
+            if(this.getRight().getData().getIdentification() == id)
+            {
+                // current is the father
+                return this.getData();
+            }
+            // Move to the Right and ask again
+            return this.getRight().findMyFather(id);
+        }
+        // if current has nothing on the Right
+        return null;
+    }
 }

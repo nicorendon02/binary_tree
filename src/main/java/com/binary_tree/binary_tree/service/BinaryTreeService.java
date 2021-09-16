@@ -149,4 +149,12 @@ public class BinaryTreeService {
         return new ResponseEntity<>(new ResponseBinaryTreeDto(true,"successful",
                         null),HttpStatus.OK);
     }
+
+    // ResponseEntity to find the father of a certain Boy' ID
+    public ResponseEntity<ResponseBinaryTreeDto> findMyFather(int id) throws BinaryTreeException,
+            DataNotFoundException
+    {
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(binaryTree.findMyFather(id),"successful",
+                null),HttpStatus.OK);
+    }
 }
