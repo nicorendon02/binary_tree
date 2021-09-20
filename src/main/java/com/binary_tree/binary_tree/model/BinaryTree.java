@@ -239,4 +239,35 @@ public class BinaryTree {
         }
         throw new DataNotFoundException("There are no Boys yet");
     }
+
+    // Method to delete a Boy by ID
+    public void deleteBoy(int idToDelete) throws DataNotFoundException
+    {
+        // if the root has something
+        if(root != null)
+        {
+            // if root is the Boy to delete
+            if(root.getData().getIdentification() == idToDelete)
+            {
+                // create a temporal Node and set the original root on his Left
+                Node temp = new Node(new Boy(root.getData().getIdentification()+1,
+                        "temp",(byte) 1,"Manizales"));
+                temp.setLeft(root);
+                // call the Method from temp to delete the original root
+                temp.deleteBoy(idToDelete);
+                // once deleted, change the pointer to the new root
+                root = temp.getLeft();
+            }
+            // if root is not the Boy to delete
+            else
+            {
+                root.deleteBoy(idToDelete);
+            }
+        }
+        else
+        {
+            throw new DataNotFoundException("There are no Boys yet");
+        }
+    }
+
 }

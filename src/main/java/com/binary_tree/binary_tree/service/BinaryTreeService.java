@@ -154,7 +154,16 @@ public class BinaryTreeService {
     public ResponseEntity<ResponseBinaryTreeDto> findMyFather(int id) throws BinaryTreeException,
             DataNotFoundException
     {
-        return new ResponseEntity<>(new ResponseBinaryTreeDto(binaryTree.findMyFather(id),"successful",
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(binaryTree.findMyFather(id),
+                "successful", null),HttpStatus.OK);
+    }
+
+    // ResponseEntity to find the father of a certain Boy' ID
+    public ResponseEntity<ResponseBinaryTreeDto> deleteBoy(int idToDelete) throws DataNotFoundException
+    {
+        binaryTree.deleteBoy(idToDelete);
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(true, "successful",
                 null),HttpStatus.OK);
     }
+
 }

@@ -406,6 +406,18 @@ public class Node {
         return this.getRight().findLargestId();
     }
 
+    // Method to find the Largest ID of the Tree (returns the Node)
+    public Node findLargestIdNode()
+    {
+        // if current on the Right has something...
+        if(this.getRight() == null)
+        {
+            return this;
+        }
+        // Move to the Right until the Method finds a Node without kids on the Right
+        return this.getRight().findLargestIdNode();
+    }
+
     // Method to find the Smallest ID of the Tree
     public Boy findSmallestId()
     {
@@ -416,6 +428,18 @@ public class Node {
         }
         // Move to the Left until the Method finds a Node without kids on the Left
         return this.getLeft().findSmallestId();
+    }
+
+    // Method to find the Smallest ID of the Tree (returns the Node)
+    public Node findSmallestIdNode()
+    {
+        // if current on the Left has something...
+        if(this.getLeft() == null)
+        {
+            return this;
+        }
+        // Move to the Left until the Method finds a Node without kids on the Left
+        return this.getLeft().findSmallestIdNode();
     }
 
     // Method to find the father of a certain Boy' ID
@@ -453,5 +477,113 @@ public class Node {
         }
         // if current has nothing on the Right
         return null;
+    }
+
+    // Method to delete a Boy by ID
+    public void deleteBoy(int idToDelete) throws DataNotFoundException
+    {
+        // if idToDelete < current ID
+        if(idToDelete < this.data.getIdentification())
+        {
+            // if current on the Left has something...
+            if(this.getLeft() != null)
+            {
+                // if my Left child ID is the Boy to delete
+                if(this.getLeft().getData().getIdentification() == idToDelete)
+                {
+                    // if my Left child is a Leaf...
+                    if(this.getLeft().isLeaf())
+                    {
+                        // delete my Left child
+                        this.setLeft(null);
+                    }
+                    // if my Left child on his Left is null and on his Right has something...
+                    else if(this.getLeft().getLeft() == null && this.getLeft().getRight() != null)
+                    {
+                        // my Left will be my Left child's Right
+                        this.setLeft(this.getLeft().getRight());
+                    }
+                    // if my Left child on his Left has something and on his Right is null...
+                    else if(this.getLeft().getLeft() != null && this.getLeft().getRight() == null)
+                    {
+                        // my Left will be my Left child's Left
+                        this.setLeft(this.getLeft().getLeft());
+                    }
+                    else
+                    {
+                        // Here the Boy to delete has his Left & Right != null
+                        // my Left child's Left finds his LargestBoy to capture the data
+                        Boy dataTransfer = this.getLeft().getLeft().findLargestId();
+                        // my Left child deletes that largestBoy
+                        this.getLeft().deleteBoy(dataTransfer.getIdentification());
+                        // replace my Left child's data with dataTransfer
+                        this.getLeft().setData(dataTransfer);
+                    }
+                }
+                // if my Left child is not the Boy to delete...
+                else
+                {
+                    // move to the Left and ask again
+                    this.getLeft().deleteBoy(idToDelete);
+                }
+            }
+            // if the Method couldn't find the Boy to delete...
+            else
+            {
+                throw new DataNotFoundException("This Boy does not exist");
+            }
+        }
+        // if idToDelete > current ID
+        // find on my Right...
+        else
+        {
+            // if my Right has something...
+            if(this.getRight() != null)
+            {
+                // if my Right child is the Boy to delete...
+                if(this.getRight().getData().getIdentification() == idToDelete)
+                {
+                    // if my Right child is a Leaf...
+                    if(this.getRight().isLeaf())
+                    {
+                        // delete my Right
+                        this.setRight(null);
+                    }
+                    // if my Right child has his Left null and his Right has something...
+                    else if(this.getRight().getLeft() == null && this.getRight().getRight() != null)
+                    {
+                        // my Right will be my Right child's Right
+                        this.setRight(this.getRight().getRight());
+                    }
+                    // if my Right child has his Left has something and his Right is null...
+                    else if(this.getRight().getLeft() != null && this.getRight().getRight() == null)
+                    {
+                        // my Right will be my Right child's Left
+                        this.setRight(this.getRight().getLeft());
+                    }
+                    // if the Boy to delete has his Left & Right != null
+                    else
+                    {
+                        // my Right child's Left finds his largestBoy to capture
+                        Boy dataTransfer = this.getRight().getLeft().findLargestId();
+                        // my Right child deletes that largestBoy
+                        this.getRight().deleteBoy(dataTransfer.getIdentification());
+                        // replace my Right child's data with dataTransfer
+                        this.getRight().setData(dataTransfer);
+                    }
+                }
+                // if my Right child is not the Boy to delete
+                else
+                {
+                    // move to the Right and ask again
+                    this.getRight().deleteBoy(idToDelete);
+                }
+            }
+            // if the Method couldn't find the Boy to delete...
+            else
+            {
+                throw new DataNotFoundException("This Boy does not exist");
+            }
+        }
     }
 }

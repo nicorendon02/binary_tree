@@ -130,7 +130,15 @@ public class BinaryTreeController {
     // find the father of a certain Boy' ID
     @GetMapping("/findMyFather/{id}")
     public @ResponseBody
-    ResponseEntity<?> findMyFather(@PathVariable int id) throws BinaryTreeException,DataNotFoundException {
+    ResponseEntity<?> findMyFather(@PathVariable int id) throws BinaryTreeException,
+            DataNotFoundException {
         return binaryTreeService.findMyFather(id);
+    }
+
+    // find the father of a certain Boy' ID
+    @GetMapping("/deleteById/{idToDelete}")
+    public @ResponseBody
+    ResponseEntity<?> deleteBoy(@PathVariable int idToDelete) throws DataNotFoundException {
+        return binaryTreeService.deleteBoy(idToDelete);
     }
 }
