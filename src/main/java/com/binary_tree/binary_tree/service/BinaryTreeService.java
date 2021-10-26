@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 // Using Lombok Annotations
 @Service
 
@@ -116,4 +118,52 @@ public class BinaryTreeService {
                         null),HttpStatus.OK);
 
     }
+
+    // ResponseEntity to find the Largest ID of the Tree
+    public ResponseEntity<ResponseBinaryTreeDto> findLargestId() throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.findLargestId(),"successful",
+                        null),HttpStatus.OK);
+
+    }
+
+    // ResponseEntity to find the Smallest ID of the Tree
+    public ResponseEntity<ResponseBinaryTreeDto> findSmallestId() throws DataNotFoundException
+    {
+        return new ResponseEntity<>(
+                new ResponseBinaryTreeDto(binaryTree.findSmallestId(),"successful",
+                        null),HttpStatus.OK);
+
+    }
+
+    // ResponseEntity to fill the Tree with a List of Boys
+    public ResponseEntity<ResponseBinaryTreeDto> fillTreeBoys(List<Boy> boys) throws BinaryTreeException
+    {
+        // for each Boy in the List...
+        for(Boy boy:boys)
+        {
+            // add Boy to the Tree
+            binaryTree.addBoy(boy);
+        }
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(true,"successful",
+                        null),HttpStatus.OK);
+    }
+
+    // ResponseEntity to find the father of a certain Boy' ID
+    public ResponseEntity<ResponseBinaryTreeDto> findMyFather(int id) throws BinaryTreeException,
+            DataNotFoundException
+    {
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(binaryTree.findMyFather(id),
+                "successful", null),HttpStatus.OK);
+    }
+
+    // ResponseEntity to find the father of a certain Boy' ID
+    public ResponseEntity<ResponseBinaryTreeDto> deleteBoy(int idToDelete) throws DataNotFoundException
+    {
+        binaryTree.deleteBoy(idToDelete);
+        return new ResponseEntity<>(new ResponseBinaryTreeDto(true, "successful",
+                null),HttpStatus.OK);
+    }
+
 }

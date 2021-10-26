@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Path;
 import javax.validation.Valid;
+import java.util.List;
 
 // Using Lombok Annotations...
 @RestController
@@ -103,5 +104,41 @@ public class BinaryTreeController {
     public @ResponseBody
     ResponseEntity<?> isEqualAndLeaf(@PathVariable int number) throws DataNotFoundException {
         return binaryTreeService.isEqualAndLeaf(number);
+    }
+
+    // find the Largest ID of the Tree
+    @GetMapping("/largestId")
+    public @ResponseBody
+    ResponseEntity<?> findLargestId() throws DataNotFoundException {
+        return binaryTreeService.findLargestId();
+    }
+
+    // find the Smallest ID of the Tree
+    @GetMapping("/smallestId")
+    public @ResponseBody
+    ResponseEntity<?> findSmallestId() throws DataNotFoundException {
+        return binaryTreeService.findSmallestId();
+    }
+
+    // fill a Tree using a List of Boys
+    @PostMapping("/fill")
+    public @ResponseBody
+    ResponseEntity<?> fillTreeBoys(@RequestBody List<Boy> boys) throws BinaryTreeException {
+        return binaryTreeService.fillTreeBoys(boys);
+    }
+
+    // find the father of a certain Boy' ID
+    @GetMapping("/findMyFather/{id}")
+    public @ResponseBody
+    ResponseEntity<?> findMyFather(@PathVariable int id) throws BinaryTreeException,
+            DataNotFoundException {
+        return binaryTreeService.findMyFather(id);
+    }
+
+    // find the father of a certain Boy' ID
+    @GetMapping("/deleteById/{idToDelete}")
+    public @ResponseBody
+    ResponseEntity<?> deleteBoy(@PathVariable int idToDelete) throws DataNotFoundException {
+        return binaryTreeService.deleteBoy(idToDelete);
     }
 }

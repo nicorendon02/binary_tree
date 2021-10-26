@@ -187,6 +187,7 @@ public class BinaryTree {
         // if root has something...
         if(root != null)
         {
+            // if the Method returns an Empty List...
             if(root.isEqualAndLeaf(number).isEmpty())
             {
                 throw new DataNotFoundException("There are no Boys with that condition");
@@ -195,4 +196,78 @@ public class BinaryTree {
         }
         throw new DataNotFoundException("There are no boys yet");
     }
+
+    // Method to find the Largest ID of the Tree
+    public Boy findLargestId() throws DataNotFoundException
+    {
+        // if root has something...
+        if(root != null)
+        {
+            return root.findLargestId();
+        }
+        throw new DataNotFoundException("There are no Boys yet");
+    }
+
+    // Method to find the Smallest ID of the Tree
+    public Boy findSmallestId() throws DataNotFoundException
+    {
+        // if root has something...
+        if(root != null)
+        {
+            return root.findSmallestId();
+        }
+        throw new DataNotFoundException("There are no Boys yet");
+    }
+
+    // Method to find the father of a certain Boy' ID
+    public Boy findMyFather(int id) throws BinaryTreeException, DataNotFoundException
+    {
+        // if root has something...
+        if(root != null)
+        {
+            // if root ID == requested ID
+            if(root.getData().getIdentification() == id)
+            {
+                throw new BinaryTreeException("This Boy has no father");
+            }
+            // if the Method in Node returns NULL
+            else if(root.findMyFather(id) == null)
+            {
+                throw new DataNotFoundException("That Boy' ID does not exist");
+            }
+            return root.findMyFather(id);
+        }
+        throw new DataNotFoundException("There are no Boys yet");
+    }
+
+    // Method to delete a Boy by ID
+    public void deleteBoy(int idToDelete) throws DataNotFoundException
+    {
+        // if the root has something
+        if(root != null)
+        {
+            // if root is the Boy to delete
+            if(root.getData().getIdentification() == idToDelete)
+            {
+                // create a temporal Node and set the original root on his Left
+                Node temp = new Node(new Boy(root.getData().getIdentification()+1,
+                        "temp",(byte) 1,"Manizales"));
+                temp.setLeft(root);
+                // call the Method from temp to delete the original root
+                temp.deleteBoy(idToDelete);
+                // once deleted, change the pointer to the new root
+                root = temp.getLeft();
+            }
+            // if root is not the Boy to delete
+            else
+            {
+                root.deleteBoy(idToDelete);
+            }
+        }
+        else
+        {
+            throw new DataNotFoundException("There are no Boys yet");
+        }
+    }
+
 }
